@@ -1,0 +1,46 @@
+CURL COMMAND SENT FROM BOOKINGS PAGE WHEN ROOM IS BOOKED BY USER
+
+curl "https://www.lib.uts.edu.au/roombooking/bookings/create" 
+-H "Cookie: __utmlib=9be735b4bf3a3982c15e52280e232bf0931b2a42^%^3A1524293190; 
+__layout=desktop; 
+UTSLIB_SESS14667d43086797fa99076bc503d7eacb=3fede7ae0e7acfae93e9d8e46d2358afcca003c08e4cebc10d6175b3e8c936db;
+has_js=1; 
+__utma=206174606.1738590607.1524293191.1524293191.1524303301.2; 
+__utmc=206174606; 
+__utmz=206174606.1524303301.2.2.utmcsr=sso.lib.uts.edu.au^|utmccn=(referral)^|utmcmd=referral^|utmcct=/cas/login; 
+__utmt=1; 
+__utmb=206174606.1.10.1524303301" 
+-H "Origin: https://www.lib.uts.edu.au" 
+-H "Accept-Encoding: gzip, deflate, br" 
+-H "Accept-Language: en-US,en;q=0.9" 
+-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36" 
+-H "Content-Type: application/x-www-form-urlencoded; 
+charset=UTF-8" 
+-H "Accept: application/json, text/javascript, */*; q=0.01" 
+-H"Referer: https://www.lib.uts.edu.au/roombooking/bookings"
+-H "X-Requested-With: XMLHttpRequest" 
+-H "Connection: keep-alive" 
+--data 
+"startTime=1524434400^&endTime=1524437100^&roomId=20^&groupName=HackathonTeam" 
+--compressed
+
+
+
+
+
+
+DATA REQUIRED BY BOOKING SCRIPT POST REQUEST
+
+https://www.lib.uts.edu.au/roombooking/bookings/create
+
+startTime=1524434400^
+&endTime=1524437100^
+&roomId=20^
+&groupName=HackathonTeam
+
+
+
+
+JQUERY SCRIPT WHICH TAKES ABOVE DATA
+
+https://static.lib.uts.edu.au/roombooking/desktop/js/roombooking.js?v=5.4
