@@ -45,7 +45,18 @@
 //Ue this line for a breakout or shield with an I2C connection:
 Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
 
+
+enum serialState{
+  sending = 1,
+  waiting = 2 
+};
+
+serialState myState;
+int incomingByte = 0; 
+int ledPin = 13;
+
 void setup(void) {
+  pinMode(ledPin, OUTPUT);
   Serial.begin(115200);
   Serial.println("Hello!");
 
@@ -66,6 +77,39 @@ void setup(void) {
 
   Serial.println("Waiting for an ISO14443A Card ...");
 }
+
+void serialStateWrapper(int buffer1){
+  switch(myState){
+    case 1: //Sending
+            digitalWrite(ledPin, HIGH);
+            //Serial.print();
+            myState = waiting;
+            break;
+
+    case 2: //Wait
+            //TODO: Receive from python serial
+            buffer1 = Serial.read();
+            if(buffer1 == 99){
+            myState = sending;
+            }else{
+            digitalWrite(ledPin, LOW);
+            }
+            break;
+  }
+}
+
+/*int serialStateWrapper(int buffer1){
+  if(serialState == 1){
+  Serial.print("sent");
+  serialState = 2; 
+  }
+  else{
+    Serial.print("wait");  //wait for receive  
+    if(Serial.read(buffer1= 99){
+    serialState = 1
+    }
+  }
+}*/
 
 
 void loop(void) {
