@@ -55,14 +55,14 @@ def main():
 	firstAvailableRoomId = 0
 	
 	
+	
 	# Scrape all urls (ie. rooms in B11) for available booking times, only check today's times
 	for roomURL in URL:
+	
 		result = session_requests.get(roomURL, headers = dict(referer = roomURL))
 		tree = html.fromstring(result.content)
 		
-		
-		# start building booking details
-		firstAvailableTimeEnd = firstAvailableTimeStart + 900
+
 		# eg. extract the '103' https://www.lib.uts.edu.au/roombooking/bookings/index/campus/7#103
 		firstAvailableRoomId = int(roomURL.replace('https://www.lib.uts.edu.au/roombooking/bookings/index/campus/7#', ''))
 		
@@ -88,7 +88,10 @@ def main():
 				timeslotfound = true
 				break
 		
-		# if time valid time slot found, move onto booking
+		# set ending booking time to 15mins after start
+		firstAvailableTimeEnd = firstAvailableTimeStart + 900
+		
+		# if time valid time slot found, move onto actual booking
 		if timeslotfound:
 			break
 		
@@ -106,10 +109,10 @@ def main():
 	result = session_requests.post(BOOKING_URL, data = payload, headers = dict(referer = BOOKING_URL)) 
 	
 	# print off all booking details (need to convert stuff to human readable)
-	print firstAvailableTimeStart
-	print firstAvailableTimeEnd
-	print firstAvailableRoomId
-	print STUDENTID
+	print ('firstAvailableTimeStart' + str(firstAvailableTimeStart) + '\n')
+	print ('firstAvailableTimeEnd' + str(firstAvailableTimeEnd) + '\n')
+	print ('firstAvailableRoomId' + str(firstAvailableRoomId) + '\n')
+	print ('STUDENTID' + str(STUDENTID) + '\n')
 
 	
 	
