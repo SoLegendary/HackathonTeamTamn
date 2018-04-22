@@ -28,7 +28,7 @@ def main():
     print p.readline().rstrip(b'\n\r')
     num = p.readline()
     if num is 'Reading Block 4:':
-        string="booking_script.py " +num
+        string="booking_script.py " + 11988401
         cmd="echo " + string
         os.system(cmd)
          
