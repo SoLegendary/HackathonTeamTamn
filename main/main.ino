@@ -152,11 +152,11 @@ void loop(void) {
       {
         Serial.println("Sector 1 (Blocks 4..7) has been authenticated");
         uint8_t data[16];
-
+        char cdata[8];
         // If you want to write something to block 4 to test with, uncomment
         // the following line and this text should be read back in a minute
-        //memcpy(data, (const uint8_t[]){ 'a', 'd', 'a', 'f', 'r', 'u', 'i', 't', '.', 'c', 'o', 'm', 0, 0, 0, 0 }, sizeof data);
-        // success = nfc.mifareclassic_WriteDataBlock (4, data);
+        memcpy(data, (const uint8_t[]){ '1', '1', '9', '8', '8', '4', '0', '1', '.', '.', '.', '.', '.', '.', '.', '.'}, sizeof data);
+        success = nfc.mifareclassic_WriteDataBlock (4, data);
 
         // Try to read the contents of block 4
         success = nfc.mifareclassic_ReadDataBlock(4, data);
@@ -165,7 +165,13 @@ void loop(void) {
         {
           // Data seems to have been read ... spit it out
           Serial.println("Reading Block 4:");
-          nfc.PrintHexChar(data, 16);
+          //nfc.PrintHexChar(data, 16);
+          for(int i = 0; i <=7; i++){
+          cdata[i] = data[i];  
+          }
+          for(int i = 0; i <=7; i++){
+          Serial.print(cdata[i]);
+          }
           Serial.println("");
 
           // Wait a bit before reading the card again
