@@ -26,11 +26,15 @@ def main():
   p = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=5)
   while True:
     print p.readline().rstrip(b'\n\r')
-
+    num = p.readline()
+    if num is 'Reading Block 4:':
+        string="booking_script.py " +num
+        cmd="echo " + string
+        os.system(cmd)
          
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        #t.stop()
         print "Done!"
+        t.stop()
